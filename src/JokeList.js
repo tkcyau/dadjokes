@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Joke from "./Joke";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -10,7 +10,6 @@ function JokeList(props) {
   const [jokes, setJokes] = useState(oldJokes || []);
   const [loading, setLoading] = useState(false);
   const seenJokes = new Set(jokes.map((j) => j.text));
-  console.log(seenJokes);
   let sortedJokes = jokes.sort((a, b) => b.votes - a.votes);
 
   async function fetchJokes() {
@@ -75,7 +74,10 @@ function JokeList(props) {
           <h1 className="JokeList-title">
             <span>Dad</span> Jokes
           </h1>
-          <img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" />
+          <img
+            src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg"
+            alt=""
+          />
           <button onClick={handleClick} className="JokeList-getmore">
             Fetch Jokes
           </button>
